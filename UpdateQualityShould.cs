@@ -91,21 +91,14 @@ namespace GildedRoseKata
             Assert.True(_items[0].Quality == _defaultQuality);
         }
 
-        
-
-
         [Fact]
         public void DoNothingGivenSulfuras()
         {
-            var items = new List<Item> {
-                                new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-
-            };
-            var gildedRose = new GildedRose(items);
-            
-            gildedRose.UpdateQuality();
-            
-            Assert.Equal(80, items.First().Quality);
+         _defaultItemName = "Sulfuras, Hand of Ragnaros";
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].SellIn == _defaultSellin);
+            Assert.True(_items[0].Quality == _defaultQuality);
         }
     }
 }
