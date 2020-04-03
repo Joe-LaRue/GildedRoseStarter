@@ -10,7 +10,7 @@ namespace GildedRoseKata
     public class UpdateQualityShould
     {
         [Fact]
-        public void GivenSellinGreaterThan1_ReducesQualityBy1()
+        public void ReducesQualityBy1_GivenSellinGreaterThan1()
         {
             var items = new List<Item>()
             {
@@ -24,7 +24,7 @@ namespace GildedRoseKata
         }
 
         [Fact]
-        public void GivenSellinOf0_ReducesQualityBy2()
+        public void ReducesQualityBy2_GivenSellinOf0()
         {
             var items = new List<Item>()
             {
@@ -36,6 +36,8 @@ namespace GildedRoseKata
 
             Assert.True(items[0].Quality == 3);
         }
+
+       
 
 
         [Fact]
