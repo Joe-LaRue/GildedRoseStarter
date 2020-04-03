@@ -9,60 +9,68 @@ namespace GildedRoseKata
 {
     public class UpdateQualityShould
     {
-        [Fact]
-        public void DecreaseSellInBy1()
+        private int _defaultSellin = 5;
+        private int _defaultQuality = 5;
+        private string _defaultItemName = "Test Item";
+        private List<Item> _items = new List<Item>();
+        
+        private void RunApp()
         {
-            var items = new List<Item>()
-            {
-                new Item { Name = "TesetIten", SellIn = 5, Quality = 5 }
-            };
-
-            var app = new GildedRose(items);
+            var app = new GildedRose(_items);
             app.UpdateQuality();
+        }
 
-            Assert.True(items[0].SellIn == 4);
+        private Item GetItem()
+        {
+            return new Item() 
+            { 
+                Name = _defaultItemName , 
+                SellIn = _defaultSellin, 
+                Quality = _defaultQuality 
+            };
+        }
+        
+        [Fact]
+        public void ReduceSellInBy1()
+        {
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].SellIn == _defaultSellin -1);
+        }
+
+        [Fact]
+        public void ReduceSellInBy1_GivenSellinOf0()
+        {
+            _defaultSellin = 0;
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].SellIn == _defaultSellin -1);
         }
 
         [Fact]
         public void ReducesQualityBy1_GivenSellinGreaterThan1()
         {
-            var items = new List<Item>()
-            {
-                new Item { Name = "TestItem", SellIn = 1, Quality = 4 }
-            };
-
-            var app = new GildedRose(items);
-            app.UpdateQuality();
-
-            Assert.True(items[0].Quality == 3);
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].Quality == _defaultQuality - 1);
         }
 
         [Fact]
         public void ReducesQualityBy2_GivenSellinOf0()
         {
-            var items = new List<Item>()
-            {
-                new Item { Name = "TestItem", SellIn = 0, Quality = 5 }
-            };
-
-            var app = new GildedRose(items);
-            app.UpdateQuality();
-
-            Assert.True(items[0].Quality == 3);
+           _defaultSellin = 0;
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].Quality == 3);
         }
 
         [Fact]
         public void NotReduceQualityBelow0_GivenQualityOf0()
         {
-            var items = new List<Item>()
-            {
-                new Item { Name = "TestItem", SellIn = 0, Quality = 0 }
-            };
-
-            var app = new GildedRose(items);
-            app.UpdateQuality();
-
-            Assert.True(items[0].Quality == 0);
+           _defaultQuality = 0;
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].Quality == 0);
         }
 
        
