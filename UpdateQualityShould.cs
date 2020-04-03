@@ -73,6 +73,14 @@ namespace GildedRoseKata
             Assert.True(_items[0].Quality == 0);
         }
 
+        [Fact]
+        public void IncreaseQuality_GivenAgedBrie()
+        {
+           _defaultItemName = "Aged Brie";
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].Quality == _defaultQuality + 1);
+        }
        
 
         
