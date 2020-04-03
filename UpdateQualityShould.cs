@@ -23,6 +23,20 @@ namespace GildedRoseKata
             Assert.True(items[0].Quality == 3);
         }
 
+        [Fact]
+        public void GivenSellinOf0_ReducesQualityBy2()
+        {
+            var items = new List<Item>()
+            {
+                new Item { Name = "TestItem", SellIn = 0, Quality = 5 }
+            };
+
+            var app = new GildedRose(items);
+            app.UpdateQuality();
+
+            Assert.True(items[0].Quality == 3);
+        }
+
 
         [Fact]
         public void DoNothingGivenSulfuras()
