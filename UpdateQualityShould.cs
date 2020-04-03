@@ -111,5 +111,15 @@ namespace GildedRoseKata
             Assert.True(_items[0].Quality == _defaultQuality + 2);
         }
 
+        [Fact]
+        public void IncreasesQualityBy2_GivenBackStagesPassesAndSellinLessThan5()
+        {
+            _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
+            _defaultSellin = 4;
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].Quality == _defaultQuality + 3);
+        }
+
     }
 }
