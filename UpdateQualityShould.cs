@@ -37,7 +37,19 @@ namespace GildedRoseKata
             Assert.True(items[0].Quality == 3);
         }
 
-       
+        [Fact]
+        public void NotReduceQualityBelow0_GivenQualityOf0()
+        {
+            var items = new List<Item>()
+            {
+                new Item { Name = "TestItem", SellIn = 0, Quality = 0 }
+            };
+
+            var app = new GildedRose(items);
+            app.UpdateQuality();
+
+            Assert.True(items[0].Quality == 0);
+        }
 
 
         [Fact]
