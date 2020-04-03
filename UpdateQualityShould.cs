@@ -82,6 +82,14 @@ namespace GildedRoseKata
             Assert.True(_items[0].Quality == _defaultQuality + 1);
         }
        
+       [Fact]
+        public void DoesNotDecreaseQuality_GivenQualityOf50()
+        {
+            _defaultQuality = -50;
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].Quality == _defaultQuality);
+        }
 
         
 
