@@ -94,11 +94,22 @@ namespace GildedRoseKata
         [Fact]
         public void DoNothingGivenSulfuras()
         {
-         _defaultItemName = "Sulfuras, Hand of Ragnaros";
+            _defaultItemName = "Sulfuras, Hand of Ragnaros";
             _items.Add(GetItem());
             RunApp();
             Assert.True(_items[0].SellIn == _defaultSellin);
             Assert.True(_items[0].Quality == _defaultQuality);
         }
+
+        [Fact]
+        public void IncreasesQualityBy2_GivenBackStagesPassesAndSellinBetween5And10()
+        {
+            _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
+            _defaultSellin = 9;
+            _items.Add(GetItem());
+            RunApp();
+            Assert.True(_items[0].Quality == _defaultQuality + 2);
+        }
+
     }
 }
