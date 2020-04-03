@@ -10,6 +10,21 @@ namespace GildedRoseKata
     public class UpdateQualityShould
     {
         [Fact]
+        public void GivenSellinGreaterThan1_ReducesQualityBy1()
+        {
+            var items = new List<Item>()
+            {
+                new Item { Name = "TestItem", SellIn = 1, Quality = 4 }
+            };
+
+            var app = new GildedRose(items);
+            app.UpdateQuality();
+
+            Assert.True(items[0].Quality == 3);
+        }
+
+
+        [Fact]
         public void DoNothingGivenSulfuras()
         {
             var items = new List<Item> {
