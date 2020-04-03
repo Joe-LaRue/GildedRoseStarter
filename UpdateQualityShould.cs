@@ -10,6 +10,20 @@ namespace GildedRoseKata
     public class UpdateQualityShould
     {
         [Fact]
+        public void DecreaseSellInBy1()
+        {
+            var items = new List<Item>()
+            {
+                new Item { Name = "TesetIten", SellIn = 5, Quality = 5 }
+            };
+
+            var app = new GildedRose(items);
+            app.UpdateQuality();
+
+            Assert.True(items[0].SellIn == 4);
+        }
+
+        [Fact]
         public void ReducesQualityBy1_GivenSellinGreaterThan1()
         {
             var items = new List<Item>()
@@ -50,6 +64,10 @@ namespace GildedRoseKata
 
             Assert.True(items[0].Quality == 0);
         }
+
+       
+
+        
 
 
         [Fact]
