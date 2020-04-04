@@ -95,6 +95,7 @@ namespace GildedRoseKata
         [Fact]
         public void DoNothingGivenSulfuras()
         {
+            _defaultQuality = 80;
             _defaultItemName = "Sulfuras, Hand of Ragnaros";
             _items.Add(GetItem());
             RunApp();
