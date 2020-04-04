@@ -48,7 +48,7 @@ namespace GildedRoseKata
         }
 
         [Fact]
-        public void ReducesQualityBy1_GivenSellinGreaterThan1()
+        public void ReduceQualityBy1_GivenSellinGreaterThan1()
         {
             _items.Add(GetItem());
             RunApp();
@@ -56,7 +56,7 @@ namespace GildedRoseKata
         }
 
         [Fact]
-        public void ReducesQualityBy2_GivenSellinOf0()
+        public void ReduceQualityBy2_GivenSellinOf0()
         {
            _defaultSellin = 0;
             _items.Add(GetItem());
@@ -83,7 +83,7 @@ namespace GildedRoseKata
         }
        
        [Fact]
-        public void DoesNotDecreaseQuality_GivenQualityOf50()
+        public void NotDecreaseQuality_GivenQualityOf50()
         {
             _defaultQuality = -50;
             _items.Add(GetItem());
@@ -102,7 +102,7 @@ namespace GildedRoseKata
         }
 
         [Fact]
-        public void IncreasesQualityBy2_GivenBackStagesPassesAndSellinBetween5And10()
+        public void IncreaseQualityBy2_GivenBackStagesPassesAndSellinBetween5And10()
         {
             _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
             _defaultSellin = 9;
@@ -112,7 +112,7 @@ namespace GildedRoseKata
         }
 
         [Fact]
-        public void IncreasesQualityBy2_GivenBackStagesPassesAndSellinLessThan5()
+        public void IncreaseQualityBy2_GivenBackStagesPassesAndSellinLessThan5()
         {
             _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
             _defaultSellin = 4;
@@ -122,7 +122,7 @@ namespace GildedRoseKata
         }
 
           [Fact]
-        public void IncreasesQUalityBy1_GivenBackStagesPassesAndSellinMoreThan10()
+        public void IncreaseQualityBy1_GivenBackStagesPassesAndSellinMoreThan10()
         {
             _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
             _defaultSellin = 11;
@@ -132,7 +132,7 @@ namespace GildedRoseKata
         }
 
          [Fact]
-        public void SetsQualityTo0_GivenBackStagesPassesAndSellin0()
+        public void SetQualityTo0_GivenBackStagesPassesAndSellin0()
         {
             _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
             _defaultSellin = 0;
