@@ -143,6 +143,15 @@ namespace GildedRoseKata
             Assert.True(_items[0].Quality == 0);
         }
 
+        //  [Fact]
+        // public void DecreaseQualityBy2_GivenConjuredItem()
+        // {
+        //     _defaultItemName = "Conjured Mana Biscuits";
+        //     _items.Add(GetItem());
+        //     RunApp();
+        //     Assert.True(_items[0].Quality == _defaultQuality - 2);
+        // }
+
 
     }
 }
