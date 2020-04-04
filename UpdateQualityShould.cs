@@ -83,9 +83,10 @@ namespace GildedRoseKata
         }
        
        [Fact]
-        public void NotDecreaseQuality_GivenQualityOf50()
+        public void NotIncreaseQuality_GivenQualityOf50()
         {
-            _defaultQuality = -50;
+            _defaultQuality = 50;
+             _defaultItemName = "Aged Brie";
             _items.Add(GetItem());
             RunApp();
             Assert.True(_items[0].Quality == _defaultQuality);
