@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GuildedRoseKata;
 using Xunit;
 
 namespace GildedRoseKata
@@ -22,11 +23,11 @@ namespace GildedRoseKata
 
         private void UpdateItem(Item item)
         {
-            if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+            if (item.Name != Constants.AGED_BRIE && item.Name != Constants.BACKSTAGE_PASSES)
                 {
                     if (item.Quality > 0)
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        if (item.Name != Constants.SULFURAS)
                         {
                             item.Quality = item.Quality - 1;
                         }
@@ -38,7 +39,7 @@ namespace GildedRoseKata
                     {
                         item.Quality = item.Quality + 1;
 
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name == Constants.BACKSTAGE_PASSES)
                         {
                             if (item.SellIn < 11)
                             {
@@ -59,20 +60,20 @@ namespace GildedRoseKata
                     }
                 }
 
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                if (item.Name != Constants.SULFURAS)
                 {
                     item.SellIn = item.SellIn - 1;
                 }
 
                 if (item.SellIn < 0)
                 {
-                    if (item.Name != "Aged Brie")
+                    if (item.Name != Constants.AGED_BRIE)
                     {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name != Constants.BACKSTAGE_PASSES)
                         {
                             if (item.Quality > 0)
                             {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                                if (item.Name != Constants.SULFURAS)
                                 {
                                     item.Quality = item.Quality - 1;
                                 }

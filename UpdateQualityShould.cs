@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using GuildedRoseKata;
 using Xunit;
 
 namespace GildedRoseKata
@@ -76,7 +77,7 @@ namespace GildedRoseKata
         [Fact]
         public void IncreaseQuality_GivenAgedBrie()
         {
-           _defaultItemName = "Aged Brie";
+           _defaultItemName = Constants.AGED_BRIE;
             _items.Add(GetItem());
             RunApp();
             Assert.True(_items[0].Quality == _defaultQuality + 1);
@@ -86,7 +87,7 @@ namespace GildedRoseKata
         public void NotIncreaseQuality_GivenQualityOf50()
         {
             _defaultQuality = 50;
-             _defaultItemName = "Aged Brie";
+             _defaultItemName = Constants.AGED_BRIE;
             _items.Add(GetItem());
             RunApp();
             Assert.True(_items[0].Quality == _defaultQuality);
@@ -96,7 +97,7 @@ namespace GildedRoseKata
         public void DoNothingGivenSulfuras()
         {
             _defaultQuality = 80;
-            _defaultItemName = "Sulfuras, Hand of Ragnaros";
+            _defaultItemName = Constants.SULFURAS;
             _items.Add(GetItem());
             RunApp();
             Assert.True(_items[0].SellIn == _defaultSellin);
@@ -106,7 +107,7 @@ namespace GildedRoseKata
         [Fact]
         public void IncreaseQualityBy2_GivenBackStagesPassesAndSellinBetween5And10()
         {
-            _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
+            _defaultItemName = Constants.BACKSTAGE_PASSES;
             _defaultSellin = 9;
             _items.Add(GetItem());
             RunApp();
@@ -116,7 +117,7 @@ namespace GildedRoseKata
         [Fact]
         public void IncreaseQualityBy2_GivenBackStagesPassesAndSellinLessThan5()
         {
-            _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
+            _defaultItemName = Constants.BACKSTAGE_PASSES;
             _defaultSellin = 4;
             _items.Add(GetItem());
             RunApp();
@@ -126,7 +127,7 @@ namespace GildedRoseKata
           [Fact]
         public void IncreaseQualityBy1_GivenBackStagesPassesAndSellinMoreThan10()
         {
-            _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
+            _defaultItemName = Constants.BACKSTAGE_PASSES;
             _defaultSellin = 11;
             _items.Add(GetItem());
             RunApp();
@@ -136,7 +137,7 @@ namespace GildedRoseKata
          [Fact]
         public void SetQualityTo0_GivenBackStagesPassesAndSellin0()
         {
-            _defaultItemName = "Backstage passes to a TAFKAL80ETC concert";
+            _defaultItemName = Constants.BACKSTAGE_PASSES;
             _defaultSellin = 0;
             _items.Add(GetItem());
             RunApp();
