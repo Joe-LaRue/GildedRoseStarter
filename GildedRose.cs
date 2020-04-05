@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GuildedRoseKata;
-using Xunit;
 
 namespace GildedRoseKata
 {
@@ -40,6 +38,40 @@ namespace GildedRoseKata
             }
         }
 
+        public bool ItemAppreciatesInQuality(Item item)
+        {
+            switch (item.Name)
+            {
+                case Constants.AGED_BRIE:
+                case Constants.BACKSTAGE_PASSES:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        public void AppreciateQuality(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
+
+                if (item.Name == Constants.BACKSTAGE_PASSES)
+                {
+                    UpdateQualityForBackstagePass(item);
+                }
+            }
+        }
+
+        private void DepreciateQuality(Item item)
+        {
+            if (item.Quality > 0)
+            {
+                item.Quality = item.Quality - 1;
+            }
+        }
+
         private void UpdateItem(Item item)
         {
             if (item.Name == Constants.SULFURAS)
@@ -47,29 +79,16 @@ namespace GildedRoseKata
                 return;
             }
 
-            if (item.Name == Constants.AGED_BRIE || item.Name == Constants.BACKSTAGE_PASSES)
+            if (ItemAppreciatesInQuality(item))
             {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-
-                    if (item.Name == Constants.BACKSTAGE_PASSES)
-                    {
-                        UpdateQualityForBackstagePass(item);
-                    }
-                }
+                AppreciateQuality(item);
             }
             else
             {
-                if (item.Quality > 0)
-                {
-                    item.Quality = item.Quality - 1;
-                }
+                DepreciateQuality(item);
             }
 
             item.SellIn = item.SellIn - 1;
-
-
             if (item.SellIn < 0)
             {
                 if (item.Name != Constants.AGED_BRIE)
@@ -97,4 +116,6 @@ namespace GildedRoseKata
             }
         }
     }
+
+
 }
