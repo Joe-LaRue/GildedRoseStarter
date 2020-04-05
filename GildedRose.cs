@@ -89,29 +89,32 @@ namespace GildedRoseKata
             }
 
             item.SellIn = item.SellIn - 1;
-            if (item.SellIn < 0)
-            {
-                if (item.Name != Constants.AGED_BRIE)
-                {
-                    if (item.Name != Constants.BACKSTAGE_PASSES)
-                    {
-                        if (item.Quality > 0)
-                        {
-                            item.Quality = item.Quality - 1;
 
-                        }
-                    }
-                    else
+            if (item.SellIn >= 0)
+            {
+                return;
+            }
+
+            if (item.Name == Constants.AGED_BRIE)
+            {
+                if (item.Quality < 50)
+                {
+                    item.Quality = item.Quality + 1;
+                }
+            }
+            else
+            {
+                if (item.Name != Constants.BACKSTAGE_PASSES)
+                {
+                    if (item.Quality > 0)
                     {
-                        item.Quality = item.Quality - item.Quality;
+                        item.Quality = item.Quality - 1;
+
                     }
                 }
                 else
                 {
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
+                    item.Quality = item.Quality - item.Quality;
                 }
             }
         }
