@@ -15,12 +15,13 @@ namespace GildedRoseKata
         {
             for (var i = 0; i < Items.Count; i++)
             {
+
                 UpdateItem(Items[i]);
             }
         }
 
         private void UpdateItem(Item item)
-        {
+        {            
             if (item.Name == Constants.SULFURAS)
             {
                 return;
@@ -39,13 +40,13 @@ namespace GildedRoseKata
                 DecrementQuality(item);
             }
 
-            item.SellIn = item.SellIn - 1;
+           DecrementSellIn(item);
 
             if (item.SellIn < 0)
             {
                 UpdateOutOfDateItem(item);
             }
-        }
+        }      
 
         private void UpdateQualityForBackstagePass(Item item)
         {
@@ -89,6 +90,11 @@ namespace GildedRoseKata
             }
         }
 
+         private void DecrementSellIn(Item item)
+        {
+             item.SellIn = item.SellIn - 1;
+        }
+
         private void ZeroOutQuality(Item item)
         {
             item.Quality = 0;
@@ -110,4 +116,12 @@ namespace GildedRoseKata
             }
         }
     }
+
+    
+
+    
+    
 }
+
+
+
