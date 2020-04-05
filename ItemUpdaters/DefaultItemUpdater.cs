@@ -10,7 +10,12 @@ namespace GildedRoseKata.ItemUpdaters
 
         public override void UpdateItem()
         {
-            throw new System.NotImplementedException();
+            DecrementQuality();
+            DecrementSellIn();
+            if (ItemIsExpired())
+            {
+                DecrementQuality();
+            }
         }
     }
 }
