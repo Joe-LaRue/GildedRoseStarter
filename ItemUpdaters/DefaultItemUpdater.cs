@@ -1,12 +1,16 @@
 namespace GildedRoseKata.ItemUpdaters
 {
-    public class DefaultItemUpdater : IItemUpdater
+    public class DefaultItemUpdater : ItemUpdater
     {
-        public ItemWrapper _itemWrapper;
-        public void UpdateItem(Item item)
+        public DefaultItemUpdater(Item item) : base(item)
         {
-            _itemWrapper = new ItemWrapper(item);
+            
+        }
 
+
+        public override void UpdateItem()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
