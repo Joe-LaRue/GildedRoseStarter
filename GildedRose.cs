@@ -18,6 +18,7 @@ namespace GildedRoseKata
                 if (Items[i].Name == Constants.SULFURAS)
                 {
                     var itemUpdater = ItemUpdaterFactory.GetItemUpdater(Items[i]);
+                    continue;
                 }
                 UpdateItem(Items[i]);
             }
@@ -25,12 +26,6 @@ namespace GildedRoseKata
 
         private void UpdateItem(Item item)
         {
-
-            if (item.Name == Constants.SULFURAS)
-            {
-                return;
-            }
-
             if (ItemAppreciatesInQuality(item))
             {
                 IncrementQuality(item);
