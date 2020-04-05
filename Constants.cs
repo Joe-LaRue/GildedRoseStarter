@@ -1,4 +1,4 @@
-namespace GuildedRoseKata
+namespace GildedRoseKata
 {
     public static class Constants
     {

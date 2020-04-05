@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GuildedRoseKata;
+using GildedRoseKata.ItemUpdaters;
 
 namespace GildedRoseKata
 {
@@ -15,13 +15,17 @@ namespace GildedRoseKata
         {
             for (var i = 0; i < Items.Count; i++)
             {
-
+                if (Items[i].Name == Constants.SULFURAS)
+                {
+                    var itemUpdater = ItemUpdaterFactory.GetItemUpdater(Items[i]);
+                }
                 UpdateItem(Items[i]);
             }
         }
 
         private void UpdateItem(Item item)
-        {            
+        {
+
             if (item.Name == Constants.SULFURAS)
             {
                 return;
@@ -40,13 +44,13 @@ namespace GildedRoseKata
                 DecrementQuality(item);
             }
 
-           DecrementSellIn(item);
+            DecrementSellIn(item);
 
             if (item.SellIn < 0)
             {
                 UpdateOutOfDateItem(item);
             }
-        }      
+        }
 
         private void UpdateQualityForBackstagePass(Item item)
         {
@@ -90,9 +94,9 @@ namespace GildedRoseKata
             }
         }
 
-         private void DecrementSellIn(Item item)
+        private void DecrementSellIn(Item item)
         {
-             item.SellIn = item.SellIn - 1;
+            item.SellIn = item.SellIn - 1;
         }
 
         private void ZeroOutQuality(Item item)
@@ -117,10 +121,10 @@ namespace GildedRoseKata
         }
     }
 
-    
 
-    
-    
+
+
+
 }
 
 
