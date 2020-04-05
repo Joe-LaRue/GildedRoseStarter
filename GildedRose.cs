@@ -19,6 +19,33 @@ namespace GildedRoseKata
             }
         }
 
+        private void UpdateItem(Item item)
+        {
+            if (item.Name == Constants.SULFURAS)
+            {
+                return;
+            }
+
+            if (ItemAppreciatesInQuality(item))
+            {
+                IncrementQuality(item);
+                if (item.Name == Constants.BACKSTAGE_PASSES)
+                {
+                    UpdateQualityForBackstagePass(item);
+                }
+            }
+            else
+            {
+                DecrementQuality(item);
+            }
+
+            item.SellIn = item.SellIn - 1;
+
+            if (item.SellIn < 0)
+            {
+                UpdateOutOfDateItem(item);
+            }
+        }
 
         private void UpdateQualityForBackstagePass(Item item)
         {
@@ -46,33 +73,12 @@ namespace GildedRoseKata
             }
         }
 
-        private void AppreciateItem(Item item)
-        {
-            if (item.Quality < 50)
-            {
-                item.Quality = item.Quality + 1;
-
-                if (item.Name == Constants.BACKSTAGE_PASSES)
-                {
-                    UpdateQualityForBackstagePass(item);
-                }
-            }
-        }
-
-        private void DepreciateItem(Item item)
-        {
-            if (item.Quality > 0)
-            {
-                item.Quality = item.Quality - 1;
-            }
-        }
-
         private void UpdateOutOfDateItem(Item item)
         {
             switch (item.Name)
             {
                 case Constants.AGED_BRIE:
-                   IncrementQuality(item);
+                    IncrementQuality(item);
                     return;
                 case Constants.BACKSTAGE_PASSES:
                     ZeroOutQuality(item);
@@ -87,6 +93,7 @@ namespace GildedRoseKata
         {
             item.Quality = 0;
         }
+
         private void IncrementQuality(Item item)
         {
             if (item.Quality < 50)
@@ -102,31 +109,5 @@ namespace GildedRoseKata
                 item.Quality = item.Quality - 1;
             }
         }
-
-        private void UpdateItem(Item item)
-        {
-            if (item.Name == Constants.SULFURAS)
-            {
-                return;
-            }
-
-            if (ItemAppreciatesInQuality(item))
-            {
-                AppreciateItem(item);
-            }
-            else
-            {
-                DepreciateItem(item);
-            }
-
-            item.SellIn = item.SellIn - 1;
-
-            if (item.SellIn < 0)
-            {
-                UpdateOutOfDateItem(item);
-            }
-        }
     }
-
-
 }
