@@ -19,26 +19,21 @@ namespace GildedRoseKata
             }
         }
 
+
         private void UpdateQualityForBackstagePass(Item item)
         {
             if (item.SellIn < 11)
             {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-                }
+                IncrementQuality(item);
             }
 
             if (item.SellIn < 6)
             {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-                }
+                IncrementQuality(item);
             }
         }
 
-        public bool ItemAppreciatesInQuality(Item item)
+        private bool ItemAppreciatesInQuality(Item item)
         {
             switch (item.Name)
             {
@@ -51,7 +46,7 @@ namespace GildedRoseKata
             }
         }
 
-        public void AppreciateQuality(Item item)
+        private void AppreciateItem(Item item)
         {
             if (item.Quality < 50)
             {
@@ -64,7 +59,7 @@ namespace GildedRoseKata
             }
         }
 
-        private void DepreciateQuality(Item item)
+        private void DepreciateItem(Item item)
         {
             if (item.Quality > 0)
             {
@@ -77,22 +72,35 @@ namespace GildedRoseKata
             switch (item.Name)
             {
                 case Constants.AGED_BRIE:
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
+                   IncrementQuality(item);
                     return;
                 case Constants.BACKSTAGE_PASSES:
-                    item.Quality = item.Quality - item.Quality;
+                    ZeroOutQuality(item);
                     return;
                 default:
-                    if (item.Quality > 0)
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
+                    DecrementQuality(item);
                     return;
             }
+        }
 
+        private void ZeroOutQuality(Item item)
+        {
+            item.Quality = 0;
+        }
+        private void IncrementQuality(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
+            }
+        }
+
+        private void DecrementQuality(Item item)
+        {
+            if (item.Quality > 0)
+            {
+                item.Quality = item.Quality - 1;
+            }
         }
 
         private void UpdateItem(Item item)
@@ -104,11 +112,11 @@ namespace GildedRoseKata
 
             if (ItemAppreciatesInQuality(item))
             {
-                AppreciateQuality(item);
+                AppreciateItem(item);
             }
             else
             {
-                DepreciateQuality(item);
+                DepreciateItem(item);
             }
 
             item.SellIn = item.SellIn - 1;
