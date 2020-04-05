@@ -18,6 +18,14 @@ namespace GildedRoseKata
                 if (Items[i].Name == Constants.SULFURAS)
                 {
                     var itemUpdater = ItemUpdaterFactory.GetItemUpdater(Items[i]);
+                    itemUpdater.UpdateItem();
+                    continue;
+                }
+
+                if (Items[i].Name == Constants.AGED_BRIE)
+                {
+                    var itemUpdater = ItemUpdaterFactory.GetItemUpdater(Items[i]);
+                    itemUpdater.UpdateItem();
                     continue;
                 }
                 UpdateItem(Items[i]);

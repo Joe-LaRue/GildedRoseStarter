@@ -10,7 +10,8 @@ namespace GildedRoseKata.ItemUpdaters
             {
                 case Constants.SULFURAS:
                     return new SulfurasItemUpdater(item);
-
+                case Constants.AGED_BRIE:
+                    return new AgedBrieItemUpdater(item);
                 default:
                     return new DefaultItemUpdater(item);
             }

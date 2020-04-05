@@ -10,6 +10,12 @@ namespace GildedRoseKata.ItemUpdaters
         {
             _item = item;
         }
+
+        protected bool ItemIsExpired()
+        {
+            return _item.SellIn < 0;
+        }
+
         protected void ZeroOutQuality()
         {
             _item.Quality = 0;
