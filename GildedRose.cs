@@ -28,19 +28,32 @@ namespace GildedRoseKata
                     itemUpdater.UpdateItem();
                     continue;
                 }
+
+                 if (Items[i].Name == Constants.BACKSTAGE_PASSES)
+                {
+                    var itemUpdater = ItemUpdaterFactory.GetItemUpdater(Items[i]);
+                    itemUpdater.UpdateItem();
+                    continue;
+                }
                 UpdateItem(Items[i]);
             }
         }
 
         private void UpdateItem(Item item)
         {
-            if (ItemAppreciatesInQuality(item))
+            if (item.Name == Constants.BACKSTAGE_PASSES)
             {
                 IncrementQuality(item);
-                if (item.Name == Constants.BACKSTAGE_PASSES)
+                if (item.SellIn < 11)
                 {
-                    UpdateQualityForBackstagePass(item);
+                    IncrementQuality(item);
                 }
+
+                if (item.SellIn < 6)
+                {
+                    IncrementQuality(item);
+                }
+
             }
             else
             {
@@ -51,49 +64,15 @@ namespace GildedRoseKata
 
             if (item.SellIn < 0)
             {
-                UpdateOutOfDateItem(item);
-            }
-        }
-
-        private void UpdateQualityForBackstagePass(Item item)
-        {
-            if (item.SellIn < 11)
-            {
-                IncrementQuality(item);
-            }
-
-            if (item.SellIn < 6)
-            {
-                IncrementQuality(item);
-            }
-        }
-
-        private bool ItemAppreciatesInQuality(Item item)
-        {
-            switch (item.Name)
-            {
-                case Constants.AGED_BRIE:
-                case Constants.BACKSTAGE_PASSES:
-                    return true;
-
-                default:
-                    return false;
-            }
-        }
-
-        private void UpdateOutOfDateItem(Item item)
-        {
-            switch (item.Name)
-            {
-                case Constants.AGED_BRIE:
-                    IncrementQuality(item);
-                    return;
-                case Constants.BACKSTAGE_PASSES:
-                    ZeroOutQuality(item);
-                    return;
-                default:
-                    DecrementQuality(item);
-                    return;
+                switch (item.Name)
+                {
+                    case Constants.BACKSTAGE_PASSES:
+                        ZeroOutQuality(item);
+                        return;
+                    default:
+                        DecrementQuality(item);
+                        return;
+                }
             }
         }
 

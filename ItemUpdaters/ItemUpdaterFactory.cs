@@ -12,6 +12,8 @@ namespace GildedRoseKata.ItemUpdaters
                     return new SulfurasItemUpdater(item);
                 case Constants.AGED_BRIE:
                     return new AgedBrieItemUpdater(item);
+                case Constants.BACKSTAGE_PASSES:
+                    return new BackstagePassItemUpdater(item);
                 default:
                     return new DefaultItemUpdater(item);
             }
