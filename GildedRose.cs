@@ -72,6 +72,29 @@ namespace GildedRoseKata
             }
         }
 
+        private void UpdateOutOfDateItem(Item item)
+        {
+            switch (item.Name)
+            {
+                case Constants.AGED_BRIE:
+                    if (item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
+                    }
+                    return;
+                case Constants.BACKSTAGE_PASSES:
+                    item.Quality = item.Quality - item.Quality;
+                    return;
+                default:
+                    if (item.Quality > 0)
+                    {
+                        item.Quality = item.Quality - 1;
+                    }
+                    return;
+            }
+
+        }
+
         private void UpdateItem(Item item)
         {
             if (item.Name == Constants.SULFURAS)
@@ -90,32 +113,9 @@ namespace GildedRoseKata
 
             item.SellIn = item.SellIn - 1;
 
-            if (item.SellIn >= 0)
+            if (item.SellIn < 0)
             {
-                return;
-            }
-
-            if (item.Name == Constants.AGED_BRIE)
-            {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-                }
-            }
-            else
-            {
-                if (item.Name != Constants.BACKSTAGE_PASSES)
-                {
-                    if (item.Quality > 0)
-                    {
-                        item.Quality = item.Quality - 1;
-
-                    }
-                }
-                else
-                {
-                    item.Quality = item.Quality - item.Quality;
-                }
+                UpdateOutOfDateItem(item);
             }
         }
     }
