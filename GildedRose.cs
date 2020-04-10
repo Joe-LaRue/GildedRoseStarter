@@ -15,17 +15,10 @@ namespace GildedRoseKata
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                UpdateItem(Items[i]);
+                var itemUpdater = ItemUpdaterFactory.GetItemUpdater(Items[i]);
+                itemUpdater.UpdateItem();
             }
-        }
-        
-        private void UpdateItem(Item item)
-        {
-            var itemUpdater = ItemUpdaterFactory.GetItemUpdater(item);
-            itemUpdater.UpdateItem();
-        }
-
-       
+         }
     }
 
 
